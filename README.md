@@ -31,7 +31,7 @@ The using the IP of the worker node and the port from `kubectl get svc`, example
 
 For additional fun add the Kubernetes cluster to ManageIQ as a Container Provider.
 
-
+![Overview]https://github.com/jamesbuckett/manageiq-on-kubeadm/blob/master/ocp-kubeadm-twitter.png)
 
 
 These are first draft and need some additional work.
