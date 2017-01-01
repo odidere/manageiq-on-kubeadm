@@ -31,8 +31,18 @@ The using the IP of the worker node and the port from `kubectl get svc`, example
 
 For additional fun add the Kubernetes cluster to ManageIQ as a Container Provider.
 
-![Overview]https://github.com/jamesbuckett/manageiq-on-kubeadm/blob/master/ocp-kubeadm-twitter.png)
+![Overview](https://github.com/jamesbuckett/manageiq-on-kubeadm/blob/master/ocp-kubeadm-twitter.png)
 
+You will need two values to add the Kubernetes Cluster to ManageIQ
+
+API Port value for kubaeadm is : 6443
+
+Token value can be extracted with the following commands
+
+```
+TOKEN=$(kubectl describe secret $(kubectl get secrets | grep default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t')
+echo $TOKEN
+```
 
 These are first draft and need some additional work.
 
