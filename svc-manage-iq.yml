@@ -1,0 +1,32 @@
+# Kubernetes Manifest file to create a ManageIQ service
+# Date : 31-12-2016
+# Version 0.1
+# Author : James Buckett (james.buckett@levvel.io)
+
+apiVersion: v1
+kind: Service
+# A Kubernetes Service is an abstraction which defines a logical set of Pods
+# and a policy by which to access them - sometimes called a micro-service.
+
+metadata:
+  # Service Definition
+  name: svc-manage-iq
+  namespace: default
+  labels:
+    app: manage-iq
+    tier: validating-peer
+spec:
+  type: NodePort
+
+  ports:
+    # 443:  Secure HTTPS port
+  - name: peer-service
+    port: 8443
+    targetPort: 443
+    protocol: TCP
+
+  # Like the selector in the replication controller,
+  # but this time it identifies the set of
+  # pods to load balance traffic to.
+  selector:
+    app: manage-iq
