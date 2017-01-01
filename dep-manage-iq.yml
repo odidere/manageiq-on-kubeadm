@@ -1,0 +1,69 @@
+# Kubernetes Manifest file to create a ManageIQ deployment
+# Date : 31-12-2016
+# Version 0.1
+# Author : James Buckett (james.buckett@levvel.io)
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+# A Deployment provides declarative updates for Pods and Replica Sets (the next-generation Replication Controller)
+
+metadata:
+  name: dep-pod-manage-iq
+  namespace: default
+  labels:
+    # Label of this Deployment Pod
+    app: manage-iq
+    
+# Replica Specifications
+spec:
+  # One copy of the fabric in case of consistency issues
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manage-iq
+      
+  template:
+    metadata:
+      labels:
+        app: manage-iq
+        version: "0.1"
+        environment: development
+        provider: do
+        
+    # Container Specifications
+    spec:
+      containers:
+      - name: manage-iq
+        
+        # http://manageiq.org/docs/get-started/docker
+        image: manageiq/manageiq:euwe-1
+        # imagePullPolicy: Always
+  
+        # Readiness Check
+        # Due to size of the hyperledger images allow some time for image download
+        # The readiness probe will not be called until 60 seconds after the all containers in the pod are created. 
+        # The readiness probe must respond within the 5 second timeout.
+        # readinessProbe:
+          # httpGet:
+            # Ready Check via REST interface 
+            # path: "/"
+            # port: 443
+          # initialDelaySeconds: 60
+          # timeoutSeconds: 5
+        
+        # Health Check
+        # livenessProbe:
+          # httpGet:
+            # Health Check via REST interface to /chain
+            # path: "/"
+            # port: 443
+          # initialDelaySeconds: 30
+          # timeoutSeconds: 1
+        
+        # Communication Ports
+        ports:
+          # HTTP listening port
+          - containerPort: 443
+
+        securityContext:
+          privileged: true
