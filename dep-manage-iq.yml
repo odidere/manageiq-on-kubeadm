@@ -36,7 +36,7 @@ spec:
       - name: manage-iq
         
         # http://manageiq.org/docs/get-started/docker
-        image: manageiq/manageiq:euwe-1
+        image: manageiq/manageiq:euwe-2
         # imagePullPolicy: Always
   
         # Readiness Check
