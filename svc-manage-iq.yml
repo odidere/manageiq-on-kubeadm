@@ -1,6 +1,6 @@
 # Kubernetes Manifest file to create a ManageIQ service
-# Date : 01-01-2017
-# Version 0.1
+# Date : 19-03-2017
+# Version 0.2
 # Author : James Buckett (james.buckett@levvel.io)
 
 apiVersion: v1
@@ -13,8 +13,7 @@ metadata:
   name: svc-manage-iq
   namespace: default
   labels:
-    app: manage-iq
-    tier: validating-peer
+    app: manage-iq    
 spec:
   type: NodePort
 
