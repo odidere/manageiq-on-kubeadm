@@ -1,6 +1,6 @@
 # Kubernetes Manifest file to create a ManageIQ deployment
-# Date : 01-01-2017
-# Version 0.1
+# Date : 17-03-2017
+# Version 0.2
 # Author : James Buckett (james.buckett@levvel.io)
 
 apiVersion: extensions/v1beta1
@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: manage-iq
-        version: "0.1"
+        version: "0.2"
         environment: development
         provider: do
         
